@@ -1,2 +1,2 @@
 const app = require('./servidor');
-app.listen(proces.env.PORT || 3000);
+app.listen(3000);
