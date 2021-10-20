@@ -1,11 +1,11 @@
 const { Pool } = require('pg');
 
 const pool = new Pool({
-    user: 'postgres',
-    host: 'localhost',
-    database: 'market_cubos',
-    password: '123456',
-    port: 5432
+    user: 'database-transacao',
+    host: 'app-424c9947-4aee-4f1d-9faa-f333c73f3af6-do-user-10072902-0.b.db.ondigitalocean.com',
+    database: 'database-transacao',
+    password: 'W5gTPpglQVD0RnQd',
+    port: 25060
 });
 
 
