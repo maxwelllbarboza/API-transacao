@@ -1,8 +1,8 @@
 
 
-# Desafio Módulo 3 - Back-end
+# Desafio - Back-end
 
-Seu papel é construir uma RESTful API que permita:
+Construção de uma RESTful API que permita:
 
 -   Fazer Login
 -   Cadastrar Usuário
@@ -13,80 +13,16 @@ Seu papel é construir uma RESTful API que permita:
 -   Cadastrar produtos
 -   Editar produtos
 -   Remover produtos
--   **EXTRA:** Filtrar produtos por categoria
+-   
+-   A API a ser criada deverá acessar o banco de dados a ser criado para persistir e manipular os dados de usuários e produtos utilizados pela aplicação.
 
-**Importante: Lembre-se sempre que cada usuário só pode ver e manipular seus próprios dados e seus próprios produtos. Não atender a este pré-requisito é uma falha de segurança gravíssima!**
 
-**Importante 2: O diretório ".github" e seu conteúdo não podem ser alterados e muito menos excluídos**
-
-**Importante 3: Sempre que a validação de uma requisição falhar, responda com código de erro e mensagem adequada à situação, ok?**
-
-**Exemplo:**
-
-```javascript
-// Quando é informado um id de usuário que não existe:
-// HTTP Status 404
-{
-    mensagem: "Usuário não encontrado!"
-}
-```
-
-## **Banco de dados**
-
-Você precisa criar um Banco de Dados PostgreSQL chamado `market_cubos` contendo as seguintes tabelas e colunas:  
-**ATENÇÃO! Os nomes das tabelas e das colunas a serem criados devem seguir exatamente os nomes listados abaixo.**
-
--   usuarios
-    -   id
-    -   nome
-    -   nome_loja (o nome da loja deste vendedor)
-    -   email (campo único)
-    -   senha
--   produtos
-    -   id
-    -   usuario_id
-    -   nome
-    -   quantidade
-    -   categoria
-    -   preco
-    -   descricao
-    -   imagem (campo texto para URL da imagem na web)
-
-**IMPORTANTE: Na raiz do seu repositório forkado deverá ser criado um arquivo SQL que deverá ser o script que cria as tabelas corretamente.**  
-
-## **Requisitos obrigatórios**
-
--   A API a ser criada deverá acessar o banco de dados a ser criado "market_cubos" para persistir e manipular os dados de usuários e produtos utilizados pela aplicação.
--   O campo `id` das tabelas no banco de dados deve ser auto incremento, chave primária e não deve permitir edição uma vez criado.
--   Seu código deverá estar organizado, delimitando as responsabilidades de cada arquivo adequadamente. Ou seja, é esperado que ele tenha, no mínimo:
-    -   Um arquivo index.js
-    -   Um arquivo servidor.js
-    -   Um arquivo conexao.js
-    -   Um arquivo de rotas
-    -   Um pasta com controladores  
-    **ATENÇÃO!: os arquivos iniciais** já existentes neste repositório original (index.js, servidor.js e conexao.js) **não deverão ser renomeados e nem movidos dentro da estrutura de pastas do projeto**. O arquivo **conexao.js** deverá ser alterado **apenas** os valores das propriedades que definem **as credenciais de acesso** ao seu banco de dados.  
--   Qualquer valor monetário deverá ser representado em centavos (Ex.: R$ 10,00 reais = 1000)
--   Evite códigos duplicados. Antes de copiar e colar, pense se não faz sentido esse pedaço de código estar centralizado numa função.
-
-## **Status Codes**
-
-Abaixo, listamos os possíveis ***status codes*** esperados como resposta da API.
-
-```javascript
-// 200 (OK) = requisição bem sucedida
-// 201 (Created) = requisição bem sucedida e algo foi criado
-// 204 (No Content) = requisição bem sucedida, sem conteúdo no corpo da resposta
-// 400 (Bad Request) = o servidor não entendeu a requisição pois está com uma sintaxe/formato inválido
-// 401 (Unauthorized) = o usuário não está autenticado (logado)
-// 403 (Forbidden) = o usuário não tem permissão de acessar o recurso solicitado
-// 404 (Not Found) = o servidor não pode encontrar o recurso solicitado
-```
 
 ## **Endpoints**
 
 ### **Cadastrar usuário**
 
-#### `POST` `/usuario`
+#### `POST` `https://api-transacao.herokuapp.com/usuario`
 
 Essa é a rota que será utilizada para cadastrar um novo usuario no sistema.
 
@@ -99,19 +35,9 @@ Essa é a rota que será utilizada para cadastrar um novo usuario no sistema.
     -   nome_loja
 
 -   **Resposta**  
-    Em caso de **sucesso**, não deveremos enviar conteúdo no corpo (body) da resposta.  
-    Em caso de **falha na validação**, a resposta deverá possuir ***status code*** apropriado, e em seu corpo (body) deverá possuir um objeto com uma propriedade **mensagem** que deverá possuir como valor um texto explicando o motivo da falha.  
-
--   **REQUISITOS OBRIGATÓRIOS**  
-    -   Validar os campos obrigatórios:
-        -   nome
-        -   email
-        -   senha
-        -   nome_loja
-    -   Validar se o e-mail informado já existe
-    -   Criptografar a senha antes de persistir no banco de dados
-    -   Cadastrar o usuário no banco de dados
-
+    Em caso de **sucesso**, não vai ser enviado conteúdo no corpo (body) da resposta.**Status(201)**  
+    Em caso de **falha na validação**, a resposta vai possuir ***status code*** apropriado, e em seu corpo (body) deverá possuir um objeto com uma propriedade **mensagem** que deverá possuir como valor um texto explicando o motivo da falha.  
+   
 #### **Exemplo de requisição**
 ```json
 // POST /usuario
@@ -138,7 +64,7 @@ Essa é a rota que será utilizada para cadastrar um novo usuario no sistema.
 
 ### **Login do usuário**
 
-#### `POST` `/login`
+#### `POST` `https://api-transacao.herokuapp.com/login`
 
 Essa é a rota que permite o usuario cadastrado realizar o login no sistema.
 
@@ -199,7 +125,7 @@ Essa é a rota que permite o usuario cadastrado realizar o login no sistema.
 
 ### **Detalhar usuário**
 
-#### `GET` `/usuario`
+#### `GET` ` https://api-transacao.herokuapp.com/usuario`
 
 Essa é a rota que será chamada quando o usuario quiser obter os dados do seu próprio perfil.  
 **Atenção!:** O usuário deverá ser identificado através do ID presente no token de autenticação.
@@ -239,7 +165,7 @@ Essa é a rota que será chamada quando o usuario quiser obter os dados do seu p
 
 ### **Atualizar usuário**
 
-#### `PUT` `/usuario`
+#### `PUT` `https://api-transacao.herokuapp.com/usuario`
 
 Essa é a rota que será chamada quando o usuário quiser realizar alterações no seu próprio usuário.  
 **Atenção!:** O usuário deverá ser identificado através do ID presente no token de autenticação.
@@ -294,7 +220,7 @@ Essa é a rota que será chamada quando o usuário quiser realizar alterações 
 
 ### **Listar produtos do usuário logado**
 
-#### `GET` `/produtos`
+#### `GET` `https://api-transacao.herokuapp.com/produtos`
 
 Essa é a rota que será chamada quando o usuario logado quiser listar todos os seus produtos cadastrados.  
 **Lembre-se:** Deverão ser retornados **apenas** produtos associados ao usuário logado, que deverá ser identificado através do ID presente no token de validação.  
@@ -358,7 +284,7 @@ Essa é a rota que será chamada quando o usuario logado quiser listar todos os 
 
 ### **Detalhar um produto do usuário logado**
 
-#### `GET` `/produtos/:id`
+#### `GET` `https://api-transacao.herokuapp.com/produtos/:id`
 
 Essa é a rota que será chamada quando o usuario logado quiser obter um dos seus produtos cadastrados.  
 **Lembre-se:** Deverá ser retornado **apenas** produto associado ao usuário logado, que deverá ser identificado através do ID presente no token de validação.
@@ -411,7 +337,7 @@ Essa é a rota que será chamada quando o usuario logado quiser obter um dos seu
 
 ### **Cadastrar produto para o usuário logado**
 
-#### `POST` `/produtos`
+#### `POST` `https://api-transacao.herokuapp.com/produtos`
 
 Essa é a rota que será utilizada para cadastrar um produto associado ao usuário logado.  
 **Lembre-se:** Deverá ser possível cadastrar **apenas** produtos associados ao próprio usuário logado, que deverá ser identificado através do ID presente no token de validação.
@@ -474,7 +400,7 @@ Essa é a rota que será utilizada para cadastrar um produto associado ao usuár
 
 ### **Atualizar produto do usuário logado**
 
-#### `PUT` `/produtos/:id`
+#### `PUT` `https://api-transacao.herokuapp.com/produtos/:id`
 
 Essa é a rota que será chamada quando o usuario logado quiser atualizar um dos seus produtos cadastrados.  
 **Lembre-se:** Deverá ser possível atualizar **apenas** produtos associados ao próprio usuário logado, que deverá ser identificado através do ID presente no token de validação.
@@ -531,7 +457,7 @@ Essa é a rota que será chamada quando o usuario logado quiser atualizar um dos
 
 ### **Excluir produto do usuário logado**
 
-#### `DELETE` `/produtos/:id`
+#### `DELETE` `https://api-transacao.herokuapp.com/produtos/:id`
 
 Essa é a rota que será chamada quando o usuario logado quiser excluir um dos seus produtos cadastrados.  
 **Lembre-se:** Deverá ser possível excluir **apenas** produtos associados ao próprio usuário logado, que deverá ser identificado através do ID presente no token de validação.  
@@ -571,73 +497,6 @@ Essa é a rota que será chamada quando o usuario logado quiser excluir um dos s
 // HTTP Status 400 / 401 / 403 / 404
 {
     "mensagem": "O usuário autenticado não tem permissão para excluir este produto."
-}
-```
-
----
-
-## **EXTRA**
-**ATENÇÃO!:** Esta parte extra não é obrigatória e recomendamos que seja feita apenas quando terminar toda a parte obrigatória acima.
-
-### **Filtrar produtos por categoria**
-
-Na funcionalidade de listagem de produtos do usuário logado (**GET /produtos**), deveremos incluir um parâmetro do tipo query **categoria** para que seja possível consultar apenas produtos de uma categoria específica.  
-**Lembre-se:** Deverão ser retornados **apenas** produtos associados ao usuário logado, que deverá ser identificado através do ID presente no token de validação.  
-
--   **Requisição**  
-    Parâmetro opcional do tipo query **categoria**.  
-    Não deverá possuir conteúdo no corpo (body) da requisição.  
-
--   **Resposta**  
-    Em caso de **sucesso**, o corpo (body) da resposta deverá possuir um array dos objetos (produtos) encontrados.  
-    Em caso de **falha na validação**, a resposta deverá possuir ***status code*** apropriado, e em seu corpo (body) deverá possuir um objeto com uma propriedade **mensagem** que deverá possuir como valor um texto explicando o motivo da falha.  
-    **Dica:** neste endpoint podemos fazer uso do status code 401 (Unauthorized).  
-
--   **REQUISITOS OBRIGATÓRIOS**
-    -   O usuário deverá ser identificado através do ID presente no token de validação
-    -   O endpoint deverá responder com um array de todos os produtos associados ao usuário que sejam da categoria passada no parâmetro query. Caso não exista nenhum produto associado ao usuário deverá responder com array vazio.
-
-#### **Exemplo de requisição**
-```json
-// GET /produtos?categoria=camisas
-// Sem conteúdo no corpo (body) da requisição
-```
-
-#### **Exemplos de resposta**
-
-```json
-// HTTP Status 200 / 201 / 204
-[
-    {
-        "id": 1,
-        "usuario_id": 1,
-        "nome": "Camisa preta",
-        "quantidade": 12,
-        "categoria": "Camisas",
-        "preco": 4990,
-        "descricao": "Camisa de malha com acabamento fino.",
-        "imagem": "https://bit.ly/3ctikxq",
-    },
-    {
-        "id": 2,
-        "usuario_id": 1,
-        "nome": "Calça jeans azul",
-        "quantidade": 8,
-        "categoria": "Calças",
-        "preco": 4490,
-        "descricao": "Calça jeans azul.",
-        "imagem": "https://bit.ly/3ctikxq",
-    },
-]
-```
-```json
-// HTTP Status 200 / 201 / 204
-[]
-```
-```json
-// HTTP Status 400 / 401 / 403 / 404
-{
-    "mensagem": "Para acessar este recurso um token de autenticação válido deve ser enviado."
 }
 
 
