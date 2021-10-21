@@ -1,4 +1,4 @@
 const { eventNames } = require('npmlog');
 const app = require('./servidor');
-app.listen(3000);
+app.listen(process.env.PORT || 3000);
 
