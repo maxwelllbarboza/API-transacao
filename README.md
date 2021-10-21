@@ -12,8 +12,7 @@ Construção de uma RESTful API que permita:
 -   Detalhar produtos
 -   Cadastrar produtos
 -   Editar produtos
--   Remover produtos
--   
+-   Remover produtos   
 -   A API a ser criada deverá acessar o banco de dados a ser criado para persistir e manipular os dados de usuários e produtos utilizados pela aplicação.
 
 
