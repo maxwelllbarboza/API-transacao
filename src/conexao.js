@@ -1,10 +1,10 @@
 const { Pool } = require('pg');
 const pool = new Pool({
-    user: 'database-transacao',
-    host: 'app-424c9947-4aee-4f1d-9faa-f333c73f3af6-do-user-10072902-0.b.db.ondigitalocean.com',
-    database: 'database-transacao',
-    password: 'W5gTPpglQVD0RnQd',
-    port: 25060,
+    user: 'nfhvwtmhzqdczi',
+    host: 'ec2-44-195-240-222.compute-1.amazonaws.com',
+    database: 'd677d83s19v5hp',
+    password: '347b00e116fff1fadb26f54306020297df51fe54d5fc24cb87dd429eba28f7f5',
+    port: 5432,
     ssl:{
         rejectUnauthorized: false
     }
